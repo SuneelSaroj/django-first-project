@@ -13,3 +13,5 @@ def add_emp(request):
         print("data is coming")
         return redirect("/employee/home/")
     return render(request, "emp/add_emp.html", {})
+
+#this is 
