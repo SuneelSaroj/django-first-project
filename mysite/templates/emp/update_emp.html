@@ -14,53 +14,57 @@
     <body>
         {% include 'emp/navbar.html' %}
         <div class="text-center my-4">
-            <h1>Add New Employee</h1>
+            <h1>Update Employee</h1>
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-body">
-                            <form action="/employee/add-emp/" method="POST">
+                            <form action="/employee/do-update-emp/{{emp.id}}" method="POST">
                                 {% csrf_token %}
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Enter Full Name" />
+                                        placeholder="Enter Full Name" value="{{emp.name}}" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address</label>
                                     <input type="email" name="email" class="form-control" id="email"
-                                        placeholder="Enter Email"">
-                </div>
-                <div class=" mb-3">
+                                        placeholder="Enter Email" value="{{emp.emp_id}}">
+                                </div>
+                                <div class=" mb-3">
                                     <label for="phone" class="form-label">Phone Number</label>
                                     <input type="text" name="phone" class="form-control" id="phone"
-                                        placeholder="Enter Phone Number" />
+                                        placeholder="Enter Phone Number" value="{{emp.mobile}}" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="address" class="form-label">address</label>
                                     <input type="text" name="address" class="form-control"
-                                        id="address" placeholder="Enter Address" />
+                                        id="address" placeholder="Enter Address"
+                                        value="{{emp.address}}" />
                                 </div>
 
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" name="is_working"
-                                        class="form-check-input" id="is_working" />
+                                    <input {% if emp.is_working %} checked {% endif %}
+                                        type="checkbox" name="is_working" class="form-check-input"
+                                        id="is_working" />
                                     <label class="form-check-label" for="is_working">Working</label>
                                 </div>
                                 <div class="mb-3">
                                     <label for="department"></label>
                                     <select class="form-select" aria-label="Department"
-                                        name="department">
-                                        <option selected>Select Department</option>
+                                        name="department" id="department">
+                                        <option value="{{emp.department}}" selected>
+                                            {{emp.department}}
+                                        </option>
                                         <option value="Computer">Computer</option>
                                         <option value="Electrical">Electrical</option>
                                         <option value="Mechanical">Mechanical</option>
                                     </select>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
                         </div>
